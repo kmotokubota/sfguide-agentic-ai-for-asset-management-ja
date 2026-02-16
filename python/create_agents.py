@@ -253,7 +253,9 @@ def get_agent_instructions():
 
 def get_portfolio_copilot_response_instructions():
     """Get Portfolio Copilot response instructions."""
-    return """Style:
+    return """日本語で質問が来た時は日本語で回答してください。
+
+Style:
 - Tone: Professional, data-driven, action-oriented for portfolio managers
 - Lead With: Direct answer with key metric, then supporting table/chart, then analysis
 - Terminology: UK English throughout ('shares' not 'stocks', 'portfolios', 'holdings', 'concentration')
@@ -346,7 +348,9 @@ Demo Disclaimer (REQUIRED at end of every response):
 def get_portfolio_copilot_orchestration_instructions():
     """Get Portfolio Copilot orchestration instructions."""
     # This is the full orchestration instructions we added earlier
-    return """Business Context:
+    return """日本語で質問が来た時は日本語で回答してください。
+
+Business Context:
 
 Organization Context:
 - Simulated Asset Management (SAM) is a multi-asset investment firm
@@ -1364,6 +1368,7 @@ def create_research_copilot(session: Session):
     
     # Build comprehensive response instructions with investment memo structure
     response_instructions = (
+        "日本語で質問が来た時は日本語で回答してください。\\n\\n"
         "Style:\\n"
         "- Tone: Technical, detail-rich, analytical for research analysts\\n"
         "- Lead With: Financial data first, then qualitative context, then synthesis\\n"
@@ -1397,6 +1402,7 @@ def create_research_copilot(session: Session):
     
     # Build comprehensive orchestration instructions
     orchestration_instructions = (
+        "日本語で質問が来た時は日本語で回答してください。\\n\\n"
         "Business Context:\\n"
         "- Research analysts conducting fundamental company analysis\\n"
         "- Focus on US public companies with SEC filing data (14,000+ securities)\\n"
@@ -1565,8 +1571,8 @@ CREATE OR REPLACE AGENT {database_name}.{ai_schema}.AM_thematic_macro_advisor
   models:
     orchestration: {config.AGENT_ORCHESTRATION_MODEL}
   instructions:
-    response: "Style:\\n- Tone: Strategic, synthesis-driven, forward-looking for thematic strategists\\n- Lead With: Thematic thesis first, then validation/evidence, then positioning recommendations\\n- Strategic Focus: Multi-year structural themes, not short-term tactical trades"
-    orchestration: "Business Context:\\n- Thematic investment strategy development\\n- Focus on multi-year structural themes and macro trends\\n- Combine portfolio positioning with thematic research\\n\\nTool Selection:\\n1. For portfolio positioning: Use quantitative_analyzer\\n2. For thematic research: Use search_broker_research\\n3. For corporate validation: Use search_press_releases\\n4. For management perspectives: Use search_company_events\\n5. For macro events: Use search_macro_events"
+    response: "日本語で質問が来た時は日本語で回答してください。\\n\\nStyle:\\n- Tone: Strategic, synthesis-driven, forward-looking for thematic strategists\\n- Lead With: Thematic thesis first, then validation/evidence, then positioning recommendations\\n- Strategic Focus: Multi-year structural themes, not short-term tactical trades"
+    orchestration: "日本語で質問が来た時は日本語で回答してください。\\n\\nBusiness Context:\\n- Thematic investment strategy development\\n- Focus on multi-year structural themes and macro trends\\n- Combine portfolio positioning with thematic research\\n\\nTool Selection:\\n1. For portfolio positioning: Use quantitative_analyzer\\n2. For thematic research: Use search_broker_research\\n3. For corporate validation: Use search_press_releases\\n4. For management perspectives: Use search_company_events\\n5. For macro events: Use search_macro_events"
   tools:
     - tool_spec:
         type: "cortex_analyst_text_to_sql"
@@ -1644,8 +1650,8 @@ CREATE OR REPLACE AGENT {database_name}.{ai_schema}.AM_esg_guardian
   models:
     orchestration: {config.AGENT_ORCHESTRATION_MODEL}
   instructions:
-    response: "Style:\\n- Tone: Compliance-focused, risk-aware, proactive for ESG oversight\\n- Lead With: Risk assessment first, then policy validation, then remediation recommendations\\n- ESG Severity Flagging: Flag controversies with High/Medium/Low severity levels"
-    orchestration: "Business Context:\\n- ESG risk monitoring and policy compliance\\n- ESG mandate requirements: Minimum BBB rating for ESG-labelled portfolios\\n- Monitor ESG controversies and ratings downgrades\\n\\nTool Selection:\\n1. For ESG ratings and portfolio compliance: Use quantitative_analyzer\\n2. For ESG controversies: Use search_ngo_reports\\n3. For engagement tracking: Use search_engagement_notes\\n4. For policy requirements: Use search_policies\\n5. For company statements: Use search_press_releases\\n6. For earnings ESG content: Use search_company_events\\n7. For report templates: Use search_report_templates BEFORE generating PDF reports"
+    response: "日本語で質問が来た時は日本語で回答してください。\\n\\nStyle:\\n- Tone: Compliance-focused, risk-aware, proactive for ESG oversight\\n- Lead With: Risk assessment first, then policy validation, then remediation recommendations\\n- ESG Severity Flagging: Flag controversies with High/Medium/Low severity levels"
+    orchestration: "日本語で質問が来た時は日本語で回答してください。\\n\\nBusiness Context:\\n- ESG risk monitoring and policy compliance\\n- ESG mandate requirements: Minimum BBB rating for ESG-labelled portfolios\\n- Monitor ESG controversies and ratings downgrades\\n\\nTool Selection:\\n1. For ESG ratings and portfolio compliance: Use quantitative_analyzer\\n2. For ESG controversies: Use search_ngo_reports\\n3. For engagement tracking: Use search_engagement_notes\\n4. For policy requirements: Use search_policies\\n5. For company statements: Use search_press_releases\\n6. For earnings ESG content: Use search_company_events\\n7. For report templates: Use search_report_templates BEFORE generating PDF reports"
   tools:
     - tool_spec:
         type: "cortex_analyst_text_to_sql"
@@ -1769,8 +1775,8 @@ CREATE OR REPLACE AGENT {database_name}.{ai_schema}.AM_compliance_advisor
   models:
     orchestration: {config.AGENT_ORCHESTRATION_MODEL}
   instructions:
-    response: "Style:\\n- Tone: Regulatory-focused, precise, action-oriented for compliance teams\\n- Lead With: Compliance status first, then breach details, then remediation requirements\\n- Flagging: Flag breaches >7% with 🚨 BREACH and warnings >6.5% with ⚠️ WARNING"
-    orchestration: "Business Context:\\n- Mandate monitoring and compliance oversight\\n- Concentration limits: 6.5% warning, 7.0% breach\\n- ESG requirements for ESG-labelled portfolios\\n- Quarterly FCA reporting requirements\\n\\nTool Selection:\\n1. For breach history and alerts: Use compliance_analyzer (FIRST CHOICE for breach queries)\\n2. For current positions/weights: Use quantitative_analyzer\\n3. For policy limits: Use search_policies\\n4. For engagement tracking: Use search_engagement_notes\\n5. For report templates: Use search_report_templates BEFORE generating PDF reports"
+    response: "日本語で質問が来た時は日本語で回答してください。\\n\\nStyle:\\n- Tone: Regulatory-focused, precise, action-oriented for compliance teams\\n- Lead With: Compliance status first, then breach details, then remediation requirements\\n- Flagging: Flag breaches >7% with 🚨 BREACH and warnings >6.5% with ⚠️ WARNING"
+    orchestration: "日本語で質問が来た時は日本語で回答してください。\\n\\nBusiness Context:\\n- Mandate monitoring and compliance oversight\\n- Concentration limits: 6.5% warning, 7.0% breach\\n- ESG requirements for ESG-labelled portfolios\\n- Quarterly FCA reporting requirements\\n\\nTool Selection:\\n1. For breach history and alerts: Use compliance_analyzer (FIRST CHOICE for breach queries)\\n2. For current positions/weights: Use quantitative_analyzer\\n3. For policy limits: Use search_policies\\n4. For engagement tracking: Use search_engagement_notes\\n5. For report templates: Use search_report_templates BEFORE generating PDF reports"
   tools:
     - tool_spec:
         type: "cortex_analyst_text_to_sql"
@@ -1868,8 +1874,8 @@ CREATE OR REPLACE AGENT {database_name}.{ai_schema}.AM_sales_advisor
   models:
     orchestration: {config.AGENT_ORCHESTRATION_MODEL}
   instructions:
-    response: "Style:\\n- Tone: Client-friendly, professional, accessible language for investors\\n- Lead With: Performance summary first, then attribution, then market commentary\\n- Formatting: Follow SAM brand guidelines and report templates"
-    orchestration: "Business Context:\\n- Client reporting and communication\\n- Professional report formatting per SAM standards\\n- Quarterly client letter and monthly report templates\\n- Client-specific reporting with flow history and relationship context\\n\\nCRITICAL - Date Handling:\\n- ALWAYS request 'latest' or 'most recent' data instead of specific quarters (Q4 2025) or dates\\n- Our data is anchored to real market data availability - specific future quarters may not exist\\n- Example: Ask for 'latest quarter performance' NOT 'Q4 2025 performance'\\n- Example: Ask for 'most recent holdings' NOT 'December 2025 holdings'\\n\\nCRITICAL - Multi-Step Workflows:\\n- For requests with numbered steps (1, 2, 3...), execute ALL steps sequentially\\n- Provide intermediate responses after each major tool use (show data, findings, analysis)\\n- Share findings progressively - don't wait until the end to respond\\n- ONLY generate PDF as the FINAL step after all analysis is complete\\n- Example workflow: Get data → Show results → Get template → Show structure → Get philosophy → Explain approach → Generate PDF\\n\\nCRITICAL - PDF Generation:\\n- Use pdf_generator ONLY as the FINAL step in multi-step workflows\\n- PDF triggers (for final step only):\\n  * Step explicitly says 'Generate PDF' or 'create PDF document'\\n  * Final step says 'professional client-ready report' or 'quarterly presentation'\\n  * Last numbered item requests 'formalize' or 'client deliverable'\\n- Do NOT generate PDF until all data gathering and analysis steps are complete\\n- Always synthesize findings in chat BEFORE calling pdf_generator\\n\\nTool Selection:\\n1. For performance data: Use quantitative_analyzer with 'latest' date filters\\n2. For client flow history: Use client_analyzer\\n3. For report templates: Use search_sales_templates\\n4. For investment philosophy: Use search_philosophy_docs\\n5. For policy explanations: Use search_policies\\n6. For PDF generation: ONLY as final step after completing all analysis"
+    response: "日本語で質問が来た時は日本語で回答してください。\\n\\nStyle:\\n- Tone: Client-friendly, professional, accessible language for investors\\n- Lead With: Performance summary first, then attribution, then market commentary\\n- Formatting: Follow SAM brand guidelines and report templates"
+    orchestration: "日本語で質問が来た時は日本語で回答してください。\\n\\nBusiness Context:\\n- Client reporting and communication\\n- Professional report formatting per SAM standards\\n- Quarterly client letter and monthly report templates\\n- Client-specific reporting with flow history and relationship context\\n\\nCRITICAL - Date Handling:\\n- ALWAYS request 'latest' or 'most recent' data instead of specific quarters (Q4 2025) or dates\\n- Our data is anchored to real market data availability - specific future quarters may not exist\\n- Example: Ask for 'latest quarter performance' NOT 'Q4 2025 performance'\\n- Example: Ask for 'most recent holdings' NOT 'December 2025 holdings'\\n\\nCRITICAL - Multi-Step Workflows:\\n- For requests with numbered steps (1, 2, 3...), execute ALL steps sequentially\\n- Provide intermediate responses after each major tool use (show data, findings, analysis)\\n- Share findings progressively - don't wait until the end to respond\\n- ONLY generate PDF as the FINAL step after all analysis is complete\\n- Example workflow: Get data → Show results → Get template → Show structure → Get philosophy → Explain approach → Generate PDF\\n\\nCRITICAL - PDF Generation:\\n- Use pdf_generator ONLY as the FINAL step in multi-step workflows\\n- PDF triggers (for final step only):\\n  * Step explicitly says 'Generate PDF' or 'create PDF document'\\n  * Final step says 'professional client-ready report' or 'quarterly presentation'\\n  * Last numbered item requests 'formalize' or 'client deliverable'\\n- Do NOT generate PDF until all data gathering and analysis steps are complete\\n- Always synthesize findings in chat BEFORE calling pdf_generator\\n\\nTool Selection:\\n1. For performance data: Use quantitative_analyzer with 'latest' date filters\\n2. For client flow history: Use client_analyzer\\n3. For report templates: Use search_sales_templates\\n4. For investment philosophy: Use search_philosophy_docs\\n5. For policy explanations: Use search_policies\\n6. For PDF generation: ONLY as final step after completing all analysis"
   tools:
     - tool_spec:
         type: "cortex_analyst_text_to_sql"
@@ -1970,8 +1976,8 @@ CREATE OR REPLACE AGENT {database_name}.{ai_schema}.AM_quant_analyst
   models:
     orchestration: {config.AGENT_ORCHESTRATION_MODEL}
   instructions:
-    response: "Style:\\n- Tone: Technical, quantitative, precise for quantitative analysts\\n- Lead With: Statistical metrics first, then factor analysis, then risk decomposition\\n- Precision: Statistical significance, confidence intervals, factor loadings to 3 decimal places"
-    orchestration: "Business Context:\\n- Advanced quantitative portfolio analysis\\n- Factor exposure analysis and attribution\\n- Risk decomposition and performance attribution\\n\\nTool Selection:\\n1. For portfolio analytics and factor analysis: Use quantitative_analyzer (SAM_ANALYST_VIEW with factor exposures)\\n2. For fundamentals validation: Use financial_analyzer\\n3. For price momentum: Use stock_prices"
+    response: "日本語で質問が来た時は日本語で回答してください。\\n\\nStyle:\\n- Tone: Technical, quantitative, precise for quantitative analysts\\n- Lead With: Statistical metrics first, then factor analysis, then risk decomposition\\n- Precision: Statistical significance, confidence intervals, factor loadings to 3 decimal places"
+    orchestration: "日本語で質問が来た時は日本語で回答してください。\\n\\nBusiness Context:\\n- Advanced quantitative portfolio analysis\\n- Factor exposure analysis and attribution\\n- Risk decomposition and performance attribution\\n\\nTool Selection:\\n1. For portfolio analytics and factor analysis: Use quantitative_analyzer (SAM_ANALYST_VIEW with factor exposures)\\n2. For fundamentals validation: Use financial_analyzer\\n3. For price momentum: Use stock_prices"
   tools:
     - tool_spec:
         type: "cortex_analyst_text_to_sql"
@@ -2034,7 +2040,9 @@ def create_middle_office_copilot(session: Session):
     ai_schema = config.DATABASE['schemas']['ai']
     
     # Comprehensive response instructions
-    response_instructions = """Style:
+    response_instructions = """日本語で質問が来た時は日本語で回答してください。
+
+Style:
 - Tone: Operational, precise, action-oriented for middle office operations specialists
 - Lead With: Exception status first, then root cause analysis, then remediation actions
 - Terminology: UK English with middle office terminology ('settlement', 'reconciliation', 'NAV calculation', 'breaks')
@@ -2233,7 +2241,9 @@ Demo Disclaimer (REQUIRED at end of every response):
 """
 
     # Comprehensive orchestration instructions
-    orchestration_instructions = """Business Context:
+    orchestration_instructions = """日本語で質問が来た時は日本語で回答してください。
+
+Business Context:
 
 Organization Context:
 - Simulated Asset Management (SAM) middle office operations team
@@ -2714,7 +2724,9 @@ def create_executive_copilot(session: Session):
     ai_schema = config.DATABASE['schemas']['ai']
     
     # Comprehensive response instructions for executive-level communication
-    response_instructions = """Style:
+    response_instructions = """日本語で質問が来た時は日本語で回答してください。
+
+Style:
 - Tone: Executive, strategic, data-driven for C-suite leadership
 - Lead With: Key metric first, then supporting analysis, then strategic implications
 - Terminology: UK English with executive terminology ('AUM', 'net flows', 'EPS accretion', 'strategic rationale')
@@ -2899,7 +2911,9 @@ Demo Disclaimer (REQUIRED at end of every response):
 """
 
     # Orchestration instructions for tool selection
-    orchestration_instructions = """Business Context:
+    orchestration_instructions = """日本語で質問が来た時は日本語で回答してください。
+
+Business Context:
 
 Organization Context:
 - Simulated Asset Management (SAM) is a multi-asset investment firm
